@@ -2,12 +2,15 @@ package org.gy.demo;
 
 import io.quarkus.cache.CacheKey;
 import io.quarkus.cache.CacheResult;
+import io.quarkus.redis.runtime.client.config.RedisConfig;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.config.Config;
+import org.eclipse.microprofile.config.ConfigProvider;
 import org.gy.demo.entity.HelloWorldNew;
 import org.gy.demo.mapper.HelloWorldNewMapper;
 import org.gy.demo.redis.RedisExample;
@@ -15,6 +18,7 @@ import org.gy.demo.redis.RedisExample;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.UUID;
 
 /**
@@ -33,6 +37,9 @@ public class TestResource {
     @Inject
     RedisExample redisExample;
 
+    @Inject
+    RedisConfig redisConfig;
+
     @GET
     @Path("/hello")
     public Object hello() {
@@ -40,6 +47,18 @@ public class TestResource {
         map.put("time", System.currentTimeMillis());
         map.put("msg", "Hello from RESTEasy Reactive");
         return map;
+    }
+
+    @GET
+    @Path("/config")
+    public Object config() {
+        Map<String, Object> result = new HashMap<>();
+        Map<String, String> envMap = System.getenv();
+        Properties properties = System.getProperties();
+        result.put("env", envMap);
+        result.put("properties", properties);
+        result.put("redisConfig", redisConfig);
+        return result;
     }
 
     @GET

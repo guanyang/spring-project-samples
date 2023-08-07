@@ -1,4 +1,8 @@
 *
+!*.xml
+!.mvn
+!mvnw
+!src/main/resources/db/*.sql
 !target/*-runner
 !target/*-runner.jar
 !target/lib/*

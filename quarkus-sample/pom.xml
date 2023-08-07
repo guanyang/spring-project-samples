@@ -141,6 +141,7 @@
             <properties>
                 <skipITs>true</skipITs>
                 <quarkus.package.type>native</quarkus.package.type>
+                <!--<quarkus.native.container-build>true</quarkus.native.container-build>-->
             </properties>
         </profile>
     </profiles>

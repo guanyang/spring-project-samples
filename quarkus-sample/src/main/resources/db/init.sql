@@ -1,4 +1,10 @@
-CREATE TABLE `hello_world_new` (
+-- 创建 database
+CREATE DATABASE IF NOT EXISTS demo DEFAULT CHARACTER SET utf8;
+
+-- 进入 demo 库
+USE demo;
+
+CREATE TABLE IF NOT EXISTS `hello_world_new` (
    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
    `name` varchar(64) NOT NULL DEFAULT '' COMMENT '名称',
    `version` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '版本号',
