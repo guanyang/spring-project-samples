@@ -57,6 +57,10 @@
             <artifactId>quarkus-arc</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-container-image-docker</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
@@ -140,8 +144,14 @@
             </activation>
             <properties>
                 <skipITs>true</skipITs>
+                <skipTests>true</skipTests>
                 <quarkus.package.type>native</quarkus.package.type>
-                <!--<quarkus.native.container-build>true</quarkus.native.container-build>-->
+                <quarkus.native.container-build>true</quarkus.native.container-build>
+                <quarkus.container-image.build>true</quarkus.container-image.build>
+                <quarkus.container-image.group>guanyangsunlight</quarkus.container-image.group>
+                <quarkus.container-image.name>${project.parent.artifactId}</quarkus.container-image.name>
+                <quarkus.container-image.tag>${project.artifactId}-${project.version}</quarkus.container-image.tag>
+                <quarkus.docker.dockerfile-native-path>src/main/docker/Dockerfile.native-micro</quarkus.docker.dockerfile-native-path>
             </properties>
         </profile>
     </profiles>

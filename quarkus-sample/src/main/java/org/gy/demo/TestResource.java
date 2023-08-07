@@ -9,8 +9,6 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.eclipse.microprofile.config.Config;
-import org.eclipse.microprofile.config.ConfigProvider;
 import org.gy.demo.entity.HelloWorldNew;
 import org.gy.demo.mapper.HelloWorldNewMapper;
 import org.gy.demo.redis.RedisExample;
