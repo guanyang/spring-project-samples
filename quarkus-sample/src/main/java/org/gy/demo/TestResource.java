@@ -10,6 +10,8 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.gy.demo.entity.HelloWorldNew;
+import org.gy.demo.grpc.HelloConsumerService;
+import org.gy.demo.grpc.HelloRequest;
 import org.gy.demo.mapper.HelloWorldNewMapper;
 import org.gy.demo.redis.RedisExample;
 
@@ -37,6 +39,9 @@ public class TestResource {
 
     @Inject
     RedisConfig redisConfig;
+
+    @Inject
+    HelloConsumerService helloConsumerService;
 
     @GET
     @Path("/hello")
@@ -106,5 +111,12 @@ public class TestResource {
         entity.setCreateTime(LocalDateTime.now());
         entity.setUpdateTime(LocalDateTime.now());
         return entity;
+    }
+
+    @GET
+    @Path("/grpc/{name}")
+    public Uni<String> hello(String name) {
+        return helloConsumerService.sayHello(HelloRequest.newBuilder().setName(name).build())
+                .onItem().transform(helloReply -> helloReply.getMessage());
     }
 }
