@@ -10,7 +10,7 @@
     <artifactId>native-sample</artifactId>
     <properties>
         <java.version>17</java.version>
-        <mainClass>org.gy.demo.nativesample.NativeSampleApplication</mainClass>
+        <start-class>org.gy.demo.nativesample.NativeSampleApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
@@ -51,28 +51,30 @@
             <plugin>
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>native-maven-plugin</artifactId>
-                <configuration>
-                    <!-- imageName用于设置生成的二进制文件名称 -->
-                    <imageName>${project.artifactId}</imageName>
-                    <!-- mainClass用于指定main方法类路径 -->
-                    <mainClass>${mainClass}</mainClass>
-                    <skipTests>true</skipTests>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>build-native</id>
-                        <goals>
-                            <goal>compile-no-fork</goal>
-                        </goals>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; imageName用于设置生成的二进制文件名称 &ndash;&gt;-->
+<!--                    <imageName>${project.artifactId}-${project.version}-runner</imageName>-->
+<!--                    &lt;!&ndash; mainClass用于指定main方法类路径 &ndash;&gt;-->
+<!--                    <mainClass>${start-class}</mainClass>-->
+<!--                    <skipTests>true</skipTests>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>build-native</id>-->
+<!--                        <goals>-->
+<!--                            <goal>compile-no-fork</goal>-->
+<!--                        </goals>-->
+<!--                        <phase>package</phase>-->
+<!--                    </execution>-->
+<!--                </executions>-->
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>${mainClass}</mainClass>
+                    <image>
+                        <name>guanyangsunlight/${project.parent.artifactId}:${project.artifactId}-${project.version}</name>
+                    </image>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
@@ -80,6 +82,15 @@
                         </exclude>
                     </excludes>
                 </configuration>
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>build-image</id>-->
+<!--                        <goals>-->
+<!--                            <goal>build-image-no-fork</goal>-->
+<!--                        </goals>-->
+<!--                        <phase>package</phase>-->
+<!--                    </execution>-->
+<!--                </executions>-->
             </plugin>
         </plugins>
     </build>
