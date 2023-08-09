@@ -1,6 +1,8 @@
 package org.gy.demo.entity;
 
 import io.vertx.mutiny.sqlclient.Row;
+import io.vertx.mutiny.sqlclient.RowIterator;
+import io.vertx.mutiny.sqlclient.RowSet;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -8,6 +10,7 @@ import lombok.experimental.Accessors;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * <p>
@@ -91,6 +94,14 @@ public class HelloWorldNew implements Serializable {
         entity.setCreateTime(row.getLocalDateTime(CREATE_TIME));
         entity.setUpdateTime(row.getLocalDateTime(UPDATE_TIME));
         return entity;
+    }
+
+    public static HelloWorldNew from(RowSet<Row> rows) {
+        return Optional.ofNullable(rows).map(RowSet::iterator)
+                .filter(RowIterator::hasNext)
+                .map(RowIterator::next)
+                .map(HelloWorldNew::from)
+                .orElse(null);
     }
 
 }

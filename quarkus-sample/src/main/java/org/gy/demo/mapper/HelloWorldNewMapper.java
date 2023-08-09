@@ -4,6 +4,7 @@ import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import io.vertx.mutiny.mysqlclient.MySQLPool;
 import io.vertx.mutiny.sqlclient.RowSet;
+import io.vertx.mutiny.sqlclient.SqlClientHelper;
 import io.vertx.mutiny.sqlclient.Tuple;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -24,24 +25,23 @@ public class HelloWorldNewMapper {
 
     public Multi<HelloWorldNew> findAll() {
         return client.query("select id, name, version, deleted, create_by, update_by, create_time, update_time from hello_world_new order by id desc").execute()
-                .onItem().transformToMulti(set -> Multi.createFrom().iterable(set))
-                .onItem().transform(HelloWorldNew::from);
+                .onItem().transformToMulti(RowSet::toMulti).map(HelloWorldNew::from);
     }
 
     public Uni<HelloWorldNew> findById(Long id) {
         return client.preparedQuery("select id, name, version, deleted, create_by, update_by, create_time, update_time from hello_world_new WHERE id = ?").execute(Tuple.of(id))
-                .onItem().transform(RowSet::iterator)
-                .onItem().transform(iterator -> iterator.hasNext() ? HelloWorldNew.from(iterator.next()) : null);
+                .map(HelloWorldNew::from);
     }
 
-    public Uni<Boolean> save(String name) {
-        return client.preparedQuery("INSERT INTO hello_world_new (name) VALUES (?)").execute(Tuple.of(name))
-                .onItem().transform(pgRowSet -> pgRowSet.rowCount() == 1);
+    public Uni<Long> save(String name) {
+        return SqlClientHelper.usingConnectionUni(client, conn -> conn.preparedQuery("INSERT INTO hello_world_new (name) VALUES (?)").execute(Tuple.of(name))
+                .onItem().transformToUni(r -> conn.query("SELECT LAST_INSERT_ID()").execute()
+                        .map(rows -> rows.iterator().next().getLong(0))));
     }
 
     public Uni<Boolean> delete(Long id) {
         return client.preparedQuery("DELETE FROM hello_world_new WHERE id = ?").execute(Tuple.of(id))
-                .onItem().transform(pgRowSet -> pgRowSet.rowCount() == 1);
+                .map(pgRowSet -> pgRowSet.rowCount() >= 1);
     }
 
 }

@@ -3,7 +3,7 @@ services:
   # MySQL 服务
   quarkus-mysql:
     image: guanyangsunlight/spring-project-samples:quarkus-mysql-8.0.32
-    container_name: quarkus-mysql
+#    container_name: quarkus-mysql
     environment:
       - TZ=Asia/Shanghai # 设置时区
 #    ports:
@@ -22,7 +22,7 @@ services:
   # Redis 服务
   quarkus-redis:
     image: redis:latest
-    container_name: quarkus-redis
+#    container_name: quarkus-redis
     networks:
       - quarkus-network
     environment:
@@ -36,8 +36,8 @@ services:
     command: /bin/bash -c "redis-server /etc/redis/redis.conf"
   # Java 服务
   quarkus-java:
-    image: guanyangsunlight/spring-project-samples:quarkus-sample-native-0.0.1
-    container_name: quarkus-java
+    image: guanyangsunlight/spring-project-samples:quarkus-sample-0.0.1-SNAPSHOT
+#    container_name: quarkus-java
     environment:
       - TZ=Asia/Shanghai # 设置时区
       - QUARKUS_DB_KIND=mysql
@@ -47,8 +47,9 @@ services:
       - QUARKUS_REDIS_HOST=redis://quarkus-redis:6379/0
       - QUARKUS_CACHE_REDIS_PREFIX=quarkus:cache
       - QUARKUS_CACHE_REDIS_TTL=300s
+      - QUARKUS_GRPC_HOST=quarkus-java
     ports:
-      - "8080:8080"
+      - "8080-8082:8080"
     depends_on:
       - quarkus-redis
       - quarkus-mysql
