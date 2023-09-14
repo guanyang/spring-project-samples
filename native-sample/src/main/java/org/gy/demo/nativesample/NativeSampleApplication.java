@@ -2,6 +2,7 @@ package org.gy.demo.nativesample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 
 @RestController
 @SpringBootApplication
+@EnableR2dbcRepositories(basePackages = "org.gy.demo.nativesample.mapper")
 public class NativeSampleApplication {
 
 
