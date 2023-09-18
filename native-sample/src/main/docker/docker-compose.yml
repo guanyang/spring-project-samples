@@ -1,0 +1,45 @@
+version: '3'
+services:
+  # MySQL 服务
+  native-sample-mysql:
+    image: guanyangsunlight/spring-project-samples:quarkus-mysql-8.0.32
+    environment:
+      - TZ=Asia/Shanghai # 设置时区
+#    ports:
+#      - "3306:3306"
+    volumes:
+      - ~/docker-data/quarkus_mysql/data:/var/lib/mysql #数据文件挂载
+      - ~/docker-data/quarkus_mysql/conf:/etc/mysql/conf.d #配置文件挂载
+      - ~/docker-data/quarkus_mysql/log:/var/log/mysql #日志文件挂载
+    networks:
+      - native-network
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping" , "-h", "localhost" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+  # Java 服务
+  native-sample-java:
+    image: guanyangsunlight/spring-project-samples:native-sample-0.0.1-SNAPSHOT
+    environment:
+      - TZ=Asia/Shanghai # 设置时区
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_R2DBC_URL=r2dbc:mysql://native-sample-mysql:3306/demo?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+      - SPRING_R2DBC_USERNAME=root
+      - SPRING_R2DBC_PASSWORD=12345678
+      - SPRING_R2DBC_POOL_INIT_SIZE=10
+      - SPRING_R2DBC_POOL_MAX_SIZE=20
+      - BPL_DEBUG_ENABLED=true
+      - BPL_DEBUG_PORT=5005
+    ports:
+      - "8082:8080"
+      - "5005:5005"
+    depends_on:
+      - native-sample-mysql
+    restart: always
+    networks:
+      - native-network
+networks:
+  native-network:
+    driver: bridge

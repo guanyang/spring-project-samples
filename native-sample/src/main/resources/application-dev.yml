@@ -1,0 +1,10 @@
+spring:
+  r2dbc:
+    url: ${SPRING_R2DBC_URL:r2dbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai}
+    username: ${SPRING_R2DBC_USERNAME:root}
+    password: ${SPRING_R2DBC_PASSWORD:12345678}
+    pool:
+      enabled: true
+      initial-size: ${SPRING_R2DBC_POOL_INIT_SIZE:10}
+      max-size: ${SPRING_R2DBC_POOL_MAX_SIZE:10}
+      validation-query: select 1

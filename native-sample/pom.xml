@@ -84,8 +84,20 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <mainClass>${start-class}</mainClass>
                     <image>
                         <name>guanyangsunlight/${project.parent.artifactId}:${project.artifactId}-${project.version}</name>
+                        <env>
+                            <!--开启远程调试配置-->
+                            <!--相当于配置：-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005-->
+                            <!--<BPL_DEBUG_ENABLED>true</BPL_DEBUG_ENABLED>
+                            <BPL_DEBUG_PORT>5005</BPL_DEBUG_PORT>-->
+                            <!--配置JMX-->
+<!--                            <BPL_JMX_ENABLED>true</BPL_JMX_ENABLED>-->
+<!--                            <BPL_JMX_PORT>5000</BPL_JMX_PORT>-->
+                            <!--配置JVM参数-->
+<!--                            <JAVA_TOOL_OPTIONS>-Dfile.encoding=UTF-8 -Duser.timezone=Asia/Shanghai -XX:InitialRAMPercentage=50.0 -XX:MaxRAMPercentage=75.0 -XX:+UseG1GC -XX:MaxGCPauseMillis=150</JAVA_TOOL_OPTIONS>-->
+                        </env>
                     </image>
                     <excludes>
                         <exclude>
@@ -94,15 +106,15 @@
                         </exclude>
                     </excludes>
                 </configuration>
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>build-image</id>-->
-<!--                        <goals>-->
-<!--                            <goal>build-image-no-fork</goal>-->
-<!--                        </goals>-->
-<!--                        <phase>package</phase>-->
-<!--                    </execution>-->
-<!--                </executions>-->
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <goals>
+                            <goal>build-image-no-fork</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -1,10 +1,6 @@
+server:
+  port: ${SERVER_PORT:8080}
+
 spring:
-  r2dbc:
-    url: r2dbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
-    username: root
-    password: 12345678
-    pool:
-      enabled: true
-      initial-size: 10
-      max-size: 10
-      validation-query: select 1
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
