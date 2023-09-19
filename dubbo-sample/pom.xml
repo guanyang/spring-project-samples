@@ -25,6 +25,11 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.gy.demo</groupId>
+                <artifactId>dubbo-sample-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- Dubbo -->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
