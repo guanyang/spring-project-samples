@@ -1,0 +1,27 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: dubbo-sample-provider
+
+dubbo:
+  application: #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
+    name: dubbo-sample-provider #应用名称
+    logger: slf4j
+    qos-enable: true
+    qos-port: 22222
+  registry:
+    address: ${DUBBO_REGISTRY_ADDRESS:zookeeper://127.0.0.1:2181}
+    timeout: 60000   #超时时间设置，太短可能会报错单位是ms，也就是60秒
+  metadata-report:
+    address: ${DUBBO_METADATA_ADDRESS:zookeeper://127.0.0.1:2181}
+    timeout: 60000   #超时时间设置，太短可能会报错单位是ms
+  config-center:
+    address: ${DUBBO_CONFIG_ADDRESS:zookeeper://127.0.0.1:2181}
+  protocol: #指定使用dubbo协议，端口是20880可以是其他端口不影响使用
+    name: dubbo
+    port: -1
+  provider:
+    group: live
+    version: 1.0.0

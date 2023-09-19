@@ -14,6 +14,7 @@
   <modules>
     <module>native-sample</module>
     <module>quarkus-sample</module>
+    <module>dubbo-sample</module>
   </modules>
   <properties>
     <java.version>17</java.version>
