@@ -1,6 +1,5 @@
 package org.gy.demo.nativesample.service.impl;
 
-import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.gy.demo.nativesample.entity.HelloWorldNew;
 import org.gy.demo.nativesample.enums.DeletedEnum;
@@ -9,6 +8,7 @@ import org.gy.demo.nativesample.service.HelloWorldNewService;
 import org.gy.demo.nativesample.util.PageQuery;
 import org.gy.demo.nativesample.util.PageResult;
 import org.gy.demo.nativesample.util.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.data.relational.core.query.Query;
 import org.springframework.data.relational.core.query.Update;
@@ -33,10 +33,10 @@ import static org.springframework.data.relational.core.query.Criteria.where;
 @Service
 public class HelloWorldNewServiceImpl implements HelloWorldNewService {
 
-    @Resource
+    @Autowired
     private HelloWorldNewRepository repository;
 
-    @Resource
+    @Autowired
     private R2dbcEntityTemplate template;
 
     @Override

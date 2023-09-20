@@ -2,7 +2,7 @@ version: '3'
 services:
   # MySQL 服务
   native-sample-mysql:
-    image: guanyangsunlight/spring-project-samples:quarkus-mysql-8.0.32
+    image: guanyangsunlight/spring-project-samples:sample-mysql-8.0.32
     environment:
       - TZ=Asia/Shanghai # 设置时区
 #    ports:

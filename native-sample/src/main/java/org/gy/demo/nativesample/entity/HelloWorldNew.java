@@ -3,11 +3,13 @@ package org.gy.demo.nativesample.entity;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * <p>
@@ -48,22 +50,26 @@ public class HelloWorldNew implements Serializable {
     /**
      * 创建人
      */
+    @Column("create_by")
     private String createBy;
 
     /**
      * 编辑人
      */
+    @Column("update_by")
     private String updateBy;
 
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    @Column("create_time")
+    private ZonedDateTime createTime;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updateTime;
+    @Column("update_time")
+    private ZonedDateTime updateTime;
 
     public static final String ID = "id";
 
