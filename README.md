@@ -1,8 +1,9 @@
 ## spring-project-samples
 
 ### Getting Started
-- [native-sample](native-sample/README.md)
-- [quarkus-sample](quarkus-sample/README.md)
+- [dubbo-sample](dubbo-sample/README.md): 基于dubbo3.2.6+springboot3.1.2+jdk17搭建示例
+- [native-sample](native-sample/README.md): 基于spring native构建原生镜像示例
+- [quarkus-sample](quarkus-sample/README.md): 基于quarkus构建原生镜像示例
 
 ### 构建原生可执行文件
 >示例工程：quarkus-sample，细节参考[构建quarkus原生可执行文件](https://cn.quarkus.io/guides/building-native-image)
