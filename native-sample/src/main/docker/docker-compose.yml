@@ -8,9 +8,9 @@ services:
 #    ports:
 #      - "3306:3306"
     volumes:
-      - ~/docker-data/quarkus_mysql/data:/var/lib/mysql #数据文件挂载
-      - ~/docker-data/quarkus_mysql/conf:/etc/mysql/conf.d #配置文件挂载
-      - ~/docker-data/quarkus_mysql/log:/var/log/mysql #日志文件挂载
+      - ~/docker-data/native_mysql/data:/var/lib/mysql #数据文件挂载
+      - ~/docker-data/native_mysql/conf:/etc/mysql/conf.d #配置文件挂载
+      - ~/docker-data/native_mysql/log:/var/log/mysql #日志文件挂载
     networks:
       - native-network
     restart: always
@@ -30,11 +30,11 @@ services:
       - SPRING_R2DBC_PASSWORD=12345678
       - SPRING_R2DBC_POOL_INIT_SIZE=10
       - SPRING_R2DBC_POOL_MAX_SIZE=20
-      - BPL_DEBUG_ENABLED=true
-      - BPL_DEBUG_PORT=5005
+#      - BPL_DEBUG_ENABLED=true
+#      - BPL_DEBUG_PORT=5005
     ports:
       - "8082:8080"
-      - "5005:5005"
+#      - "5005:5005"
     depends_on:
       - native-sample-mysql
     restart: always

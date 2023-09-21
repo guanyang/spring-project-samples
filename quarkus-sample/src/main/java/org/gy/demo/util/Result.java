@@ -1,14 +1,11 @@
 package org.gy.demo.util;
 
 import jakarta.ws.rs.core.Response;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serial;
-import java.io.Serializable;
 
 /**
  * 功能描述：
@@ -17,27 +14,14 @@ import java.io.Serializable;
  * @version 1.0.0
  * @date 2023/8/9 14:37
  */
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Accessors(chain = true)
-public class Result<T> implements Serializable {
+public class Result<T> extends BaseResult {
     @Serial
     private static final long serialVersionUID = -1822322929921254884L;
 
-    public static final Response.Status SUCCESS = Response.Status.OK;
-    public static final Response.Status ERROR = Response.Status.BAD_REQUEST;
-
-    private int code;
-
-    private String message;
-
     private T data;
-
-    public boolean success() {
-        return SUCCESS.getStatusCode() == code;
-    }
 
     public static <T> Result<T> success(T data) {
         return of(Response.Status.OK, data);
@@ -66,6 +50,9 @@ public class Result<T> implements Serializable {
     }
 
     public static <T> Result<T> of(int code, String msg, T data) {
-        return new Result<>(code, msg, data);
+        Result<T> result = new Result<>();
+        result.wrapResult(code, msg);
+        result.setData(data);
+        return result;
     }
 }

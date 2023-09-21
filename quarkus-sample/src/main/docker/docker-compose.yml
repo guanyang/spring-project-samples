@@ -2,7 +2,7 @@ version: '3'
 services:
   # MySQL 服务
   quarkus-mysql:
-    image: guanyangsunlight/spring-project-samples:quarkus-mysql-8.0.32
+    image: guanyangsunlight/spring-project-samples:sample-mysql-8.0.32
 #    container_name: quarkus-mysql
     environment:
       - TZ=Asia/Shanghai # 设置时区
@@ -14,26 +14,27 @@ services:
       - ~/docker-data/quarkus_mysql/log:/var/log/mysql #日志文件挂载
     networks:
       - quarkus-network
+    restart: always
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping" , "-h", "localhost" ]
       interval: 5s
       timeout: 10s
       retries: 5
   # Redis 服务
-  quarkus-redis:
-    image: redis:latest
-#    container_name: quarkus-redis
-    networks:
-      - quarkus-network
-    environment:
-      - TZ=Asia/Shanghai # 设置时区
-#    ports:
-#      - 6379:6379
-    volumes:
-      - ./conf/redis.conf:/etc/redis/redis.conf
-      - ~/docker-data/quarkus_redis/data:/data
-      - ~/docker-data/quarkus_redis/logs:/logs
-    command: /bin/bash -c "redis-server /etc/redis/redis.conf"
+#  quarkus-redis:
+#    image: redis:latest
+##    container_name: quarkus-redis
+#    networks:
+#      - quarkus-network
+#    environment:
+#      - TZ=Asia/Shanghai # 设置时区
+##    ports:
+##      - 6379:6379
+#    volumes:
+#      - ./conf/redis.conf:/etc/redis/redis.conf
+#      - ~/docker-data/quarkus_redis/data:/data
+#      - ~/docker-data/quarkus_redis/logs:/logs
+#    command: /bin/bash -c "redis-server /etc/redis/redis.conf"
   # Java 服务
   quarkus-java:
     image: guanyangsunlight/spring-project-samples:quarkus-sample-0.0.1-SNAPSHOT
@@ -44,16 +45,16 @@ services:
       - QUARKUS_DB_URL=mysql://quarkus-mysql:3306/demo?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
       - QUARKUS_DB_USERNAME=root
       - QUARKUS_DB_PASSWORD=12345678
-      - QUARKUS_REDIS_HOST=redis://quarkus-redis:6379/0
-      - QUARKUS_CACHE_REDIS_PREFIX=quarkus:cache
-      - QUARKUS_CACHE_REDIS_TTL=300s
-      - QUARKUS_GRPC_HOST=quarkus-java
+#      - QUARKUS_REDIS_HOST=redis://quarkus-redis:6379/0
+#      - QUARKUS_CACHE_REDIS_PREFIX=quarkus:cache
+#      - QUARKUS_CACHE_REDIS_TTL=300s
+#      - QUARKUS_GRPC_HOST=quarkus-java
     ports:
-      - "8080-8082:8080"
+      - "8081:8080"
     depends_on:
-      - quarkus-redis
+#      - quarkus-redis
       - quarkus-mysql
-    restart: on-failure
+    restart: always
     networks:
       - quarkus-network
 #    command: /bin/bash -c "./application -Dquarkus.http.host=0.0.0.0 -Dquarkus.profile=prod"
