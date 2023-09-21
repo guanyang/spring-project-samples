@@ -79,8 +79,11 @@
                 <configuration>
                     <mainClass>${start-class}</mainClass>
                     <image>
+                        <builder>paketobuildpacks/builder:tiny</builder>
                         <name>guanyangsunlight/${project.parent.artifactId}:${project.artifactId}-${project.version}</name>
                         <env>
+                            <!--构建原生镜像-->
+<!--                            <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>-->
                             <!--开启远程调试配置-->
                             <!--相当于配置：-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005-->
                             <!--<BPL_DEBUG_ENABLED>true</BPL_DEBUG_ENABLED>
