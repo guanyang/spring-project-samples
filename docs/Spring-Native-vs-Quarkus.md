@@ -3,6 +3,13 @@
 - Quarkus的到来为开发Linux容器和 kubernetes 原生Java微服务带来了一个创新平台。
 - Spring Boot是一个基于Java的框架，专注于企业应用，它可以简单使用所有Spring项目，并集成了许多开箱即用的功能，来帮助开发人员提高生产力。
 - Spring Boot由于其约定优于配置方法，它根据依赖项自动注册默认配置，大大缩短了Java应用程序的开发周期。
+- Java生态中新兴的技术体系
+  - Spring Reactive(Spring WebFlux) → 背靠 Pivotal → 归属 VMware → 归属戴尔
+  - Quarkus 和 Vert.x → 背靠 Eclipse 基金会 → 主要由 Red Hat 支持
+  - Helidon → 背靠 Oracle
+  - Micronaut → 背靠 Object Computing（Grails、OpenDDS）
+  - Lagom → 背靠 Lightbend（Akka）
+- 本文重点关注比较热门的`Spring Reactive`和`Quarkus`在原生镜像方面的差异。
 
 ### 对比分析
 - **创新和生态系统**： Spring 有着长期的历史和丰富的生态系统，许多开发者对其已经非常熟悉。Spring Native 是 Spring 团队为了更好地适应云原生环境（如 Kubernetes）而推出的新项目。相比之下，Quarkus 较新，但它在设计上就考虑了现代云原生和微服务架构，因此在某些方面可能更具创新性。
