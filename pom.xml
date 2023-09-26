@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.1.2</version>
+    <version>3.1.4</version>
     <relativePath/>
   </parent>
   <groupId>org.gy.demo</groupId>
@@ -15,6 +15,7 @@
     <module>native-sample</module>
     <module>quarkus-sample</module>
     <module>dubbo-sample</module>
+    <module>virtualthread-sample</module>
   </modules>
   <properties>
     <java.version>17</java.version>
