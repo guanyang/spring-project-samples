@@ -1,2 +1,3 @@
 spring:
-  thread-executor: virtual
+  #配置virtual表示启用虚拟线程，非virtual表示不启用，可以通过环境变量SPRING_EXECUTOR指定
+  executor: ${SPRING_EXECUTOR:virtual}
