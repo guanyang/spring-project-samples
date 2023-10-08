@@ -67,7 +67,7 @@ export default function () {
 ## 启用虚拟线程实例
 docker run --name virtualthread-sample-vt -p 8081:8080 -e SPRING_EXECUTOR=virtual -d guanyangsunlight/spring-project-samples:virtualthread-sample-0.0.1-SNAPSHOT
 
-## 启用weblux实例
+## 启用webflux实例
 docker run --name webflux-sample -p 8083:8080 -d guanyangsunlight/spring-project-samples:webflux-sample-0.0.1-SNAPSHOT
 ```
 
