@@ -73,6 +73,16 @@ docker run --name webflux-sample -p 8083:8080 -d guanyangsunlight/spring-project
 
 ##### K6压测结果
 
+- QPS对比
+
+![QPS对比](image/QPS.png)
+
+- Avg Latency对比
+
+![Avg Latency对比](image/Avg-Latency.png)
+
+- 详细数据
+
 | Case                      | QPS           | Avg Latency | P95      |
 |---------------------------|---------------|-------------|----------|
 | Spring Boot虚拟线程,-u 200    | 1620.869685/s | 123.09ms    | 149.42ms |
@@ -88,10 +98,6 @@ docker run --name webflux-sample -p 8083:8080 -d guanyangsunlight/spring-project
 | Spring webflux响应式,-u 1000 | 5994.725404/s | 166.09ms    | 255.77ms |
 | Spring webflux响应式,-u 1200 | 6878.047424/s | 173.48ms    | 278.69ms |
 
-- QPS对比
-![QPS对比](image/QPS.png)
-- Avg Latency对比
-![Avg Latency对比](image/Avg-Latency.png)
 
 ### 总结
 Spring WebFlux和JDK虚拟线程是两种不同的技术，用于解决不同的问题，并具有不同的使用场景。下面是它们之间的对比及使用场景：
