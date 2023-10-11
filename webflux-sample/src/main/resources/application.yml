@@ -1,0 +1,6 @@
+spring:
+  scheduler:
+    #调度器线程大小
+    thread-cap: 200
+    #调度器队列大小
+    queued-task-cap: 20000
