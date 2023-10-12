@@ -17,15 +17,20 @@ public class HelloWorldService {
      */
     @SneakyThrows
     public Map<String, Object> hello(long timeMillis) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("time", System.currentTimeMillis());
-        map.put("msg", "Hello World!");
-        map.put("thread", Thread.currentThread().toString());
+        Map<String, Object> map = hello();
         map.put("timeMillis", timeMillis);
         //模拟耗时操作
         if (timeMillis > 0) {
             Thread.sleep(timeMillis);
         }
+        return map;
+    }
+
+    public Map<String, Object> hello() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("time", System.currentTimeMillis());
+        map.put("msg", "Hello World!");
+        map.put("thread", Thread.currentThread().toString());
         return map;
     }
 }

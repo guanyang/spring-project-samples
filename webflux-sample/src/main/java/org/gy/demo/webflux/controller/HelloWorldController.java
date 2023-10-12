@@ -6,12 +6,12 @@ import org.gy.demo.webflux.service.HelloWorldService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 
 @Slf4j
 @RestController
@@ -28,20 +28,12 @@ public class HelloWorldController {
 
     @GetMapping("/hello")
     public Mono<Object> hello() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("time", System.currentTimeMillis());
-        map.put("msg", "Hello World!");
-        map.put("thread", Thread.currentThread().toString());
-        return Mono.just(map);
+        return Mono.fromSupplier(service::hello);
     }
 
     @GetMapping("/hello/{timeMillis}")
     public Mono<Object> hello(@PathVariable long timeMillis) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("time", System.currentTimeMillis());
-        map.put("msg", "Hello World!");
-        map.put("thread", Thread.currentThread().toString());
-        return Mono.delay(Duration.ofMillis(timeMillis)).thenReturn(map);
+        return Mono.delay(Duration.ofMillis(timeMillis)).thenReturn(service.hello());
     }
 
     @GetMapping("/hello1/{timeMillis}")
@@ -57,5 +49,15 @@ public class HelloWorldController {
     @GetMapping("/hello3/{timeMillis}")
     public Object hello3(@PathVariable long timeMillis) {
         return service.hello(timeMillis);
+    }
+
+    @GetMapping("/hello4/{timeMillis}")
+    public Mono<Object> hello4(@PathVariable long timeMillis) {
+        return Mono.delay(Duration.ofMillis(timeMillis)).subscribeOn(virtualThreadScheduler).thenReturn(service.hello());
+    }
+
+    @GetMapping("/hello5/{timeMillis}")
+    public Mono<Object> hello5(@PathVariable long timeMillis) {
+        return Mono.delay(Duration.ofMillis(timeMillis)).subscribeOn(platformThreadScheduler).thenReturn(service.hello());
     }
 }
