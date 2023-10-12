@@ -11,6 +11,7 @@
 - [Spring-Native-vs-Quarkus](docs/Spring-Native-vs-Quarkus.md)
 - [JDK21虚拟线程原理及实践](docs/JDK21虚拟线程原理及实践.md)
 - [JDK21虚拟线程和webflux性能对决](docs/JDK21虚拟线程和webflux性能对决.md)
+- [Spring Webflux使用subscribeOn和publishOn的最佳实践](docs/Spring%20Webflux使用subscribeOn和publishOn的最佳实践.md)
 
 ### 构建原生可执行文件
 >示例工程：quarkus-sample，细节参考[构建quarkus原生可执行文件](https://cn.quarkus.io/guides/building-native-image)
