@@ -13,7 +13,30 @@
 - [JDK21虚拟线程和webflux性能对决](docs/JDK21虚拟线程和webflux性能对决.md)
 - [Spring Webflux使用subscribeOn和publishOn的最佳实践](docs/Spring%20Webflux使用subscribeOn和publishOn的最佳实践.md)
 
-### K6压测概述
+### K6压测
+#### K6及dashboard安装
+- k6安装，参考文档：https://k6.io/docs/get-started/installation/
+- k6 dashboard安装，参考文档：https://github.com/grafana/xk6-dashboard
+```
+1.Download xk6:
+$> go install go.k6.io/xk6/cmd/xk6@latest
+
+2.Build the binary:
+$> xk6 build --with github.com/grafana/xk6-dashboard@latest
+
+3.Usage:
+$> ./k6 run --out dashboard script.js
+
+          /\      |‾‾| /‾‾/   /‾‾/   
+     /\  /  \     |  |/  /   /  /    
+    /  \/    \    |     (   /   ‾‾\  
+   /          \   |  |\  \ |  (‾)  | 
+  / __________ \  |__| \__\ \_____/ .io
+
+  execution: local
+     script: script.js
+     output: dashboard (:5665) http://127.0.0.1:5665
+```
 #### 压测脚本
 - 总请求时长60s，并发从200开始，命令如下：
 ```
