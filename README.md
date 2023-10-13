@@ -13,6 +13,47 @@
 - [JDK21虚拟线程和webflux性能对决](docs/JDK21虚拟线程和webflux性能对决.md)
 - [Spring Webflux使用subscribeOn和publishOn的最佳实践](docs/Spring%20Webflux使用subscribeOn和publishOn的最佳实践.md)
 
+### K6压测概述
+#### 压测脚本
+- 总请求时长60s，并发从200开始，命令如下：
+```
+k6 run --out dashboard=open -u 200 --duration 60s -e url=http://127.0.0.1:8081/hello/100 simple-test.js
+
+-i：指定请求数量
+-u：模拟并发数量
+--duration：请求时长定义，例如：60s，1m
+-e url：指定环境变量url，用于实际场景替换
+--out: 指定结果输出，例如：dashboard=open表示指定到k6 dashboard，并自动打开浏览器http://127.0.0.1:5665
+```
+#### `simple-test.js`脚本说明
+```
+import http from 'k6/http';
+import { check } from 'k6';
+
+export const options = {
+    //配置阈值判断，不满足阈值的作为错误结果
+    // thresholds: {
+    //     http_req_failed: ['rate<0.01'], // http errors should be less than 1%
+    //     http_req_duration: ['p(95)<200'], // 95% of requests should be below 200ms
+    // },
+    //配置压测阶段，可以定义多个阶段进行
+    // stages: [
+    //     { duration: '1m', target: 200 },
+    //     { duration: '1m', target: 400 },
+    //     { duration: '1m', target: 600 },
+    //     { duration: '1m', target: 800 },
+    //     { duration: '1m', target: 1000 },
+    // ],
+};
+
+export default function () {
+  const res = http.get(`${__ENV.url}`);
+  check(res, {
+    'is status 200': (r) => r.status === 200
+  });
+}
+```
+
 ### 构建原生可执行文件
 >示例工程：quarkus-sample，细节参考[构建quarkus原生可执行文件](https://cn.quarkus.io/guides/building-native-image)
 - 方法一：如果本地已经安装`GraalVM`，则运行如下命令即可
