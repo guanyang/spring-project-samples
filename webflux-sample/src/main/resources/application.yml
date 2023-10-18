@@ -4,3 +4,9 @@ spring:
     thread-cap: 200
     #调度器队列大小
     queued-task-cap: 20000
+
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
