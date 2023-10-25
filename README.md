@@ -88,12 +88,12 @@ export default function () {
 
 - 方法一：如果本地已经安装`GraalVM`，则运行如下命令即可
 
-```shell script
+```shell
 mvn clean package -DskipTests -Dnative
 ```
 - 方法二：如果本地没有安装`GraalVM`，则运行如下命令，基于容器环境构建可执行文件，需要本地支持`docker`环境
 
-```shell script
+```shell
 mvn clean package -DskipTests -Dnative -Dquarkus.native.container-build=true
 ```
 - 以上命令将生成可执行文件: `./target/quarkus-sample-0.0.1-SNAPSHOT-runner`，直接运行即可。
@@ -101,7 +101,7 @@ mvn clean package -DskipTests -Dnative -Dquarkus.native.container-build=true
 ### 构建容器镜像
 - 方法一：使用容器镜像扩展，一个命令即可创建一个容器镜像，细节参考[容器镜像指南](https://cn.quarkus.io/guides/container-image)
 
-```shell script
+```shell
 mvn clean package -Dnative -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true
 ```
 
@@ -109,7 +109,7 @@ mvn clean package -Dnative -Dquarkus.native.container-build=true -Dquarkus.conta
 
 >如果你没有删除生成的原生可执行文件，可以用以下方法构建docker镜像：
 
-```shell script
+```shell
 docker build -f src/main/docker/Dockerfile.native-micro -t guanyangsunlight/spring-project-samples:quarkus-sample-native-0.0.1 .
 ```
 
