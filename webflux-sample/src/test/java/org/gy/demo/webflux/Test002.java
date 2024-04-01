@@ -5,18 +5,71 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Test002 {
 
     public static void main(String[] args) {
-//        int[] nums = randomIntArray(10, 200);
-//        printArray(nums);
-////        bubbleSort(nums);
-////        quickSort(nums, 0, nums.length - 1);
+        int[] nums = randomIntArray(10, 200);
+        printArray(nums);
+//        bubbleSort(nums);
+//        quickSort(nums, 0, nums.length - 1);
 //        mergeSort(nums, 0, nums.length - 1);
-//        printArray(nums);
+        heapSort(nums);
+        printArray(nums);
 
 //        String version1 = "0.1";
 //        String version2 = "1.1";
 //        System.out.println(compareVersion(version1, version2));
 //        System.out.println("1".compareTo(""));Ï
 
+    }
+
+    /**
+     * 使用堆排序算法对数组进行排序。
+     *
+     * @param nums 待排序的整型数组。
+     */
+    public static void heapSort(int[] nums) {
+        // 建立最大堆，从最后一个非叶子节点开始向上调整
+        for (int i = nums.length / 2 - 1; i >= 0; i--) {
+            siftDown(nums, nums.length, i);
+        }
+        // 依次从堆中取出最大元素，放至数组末尾，然后重新调整堆
+        for (int i = nums.length - 1; i > 0; i--) {
+            swap(nums, 0, i);
+            siftDown(nums, i, 0);
+        }
+    }
+
+
+    /**
+     * 自顶向下堆化处理 该方法通过比较父节点和其子节点的值，将较大的元素下沉，以维持堆的性质。
+     *
+     * @param nums 堆数组
+     * @param len 数组的有效长度
+     * @param i 当前需要堆化的节点索引
+     */
+    public static void siftDown(int[] nums, int len, int i) {
+        while (true) {
+            int left = 2 * i + 1; // 左子节点索引
+            int right = 2 * i + 2; // 右子节点索引
+            int max = i; // 当前最大值节点索引，默认为父节点
+
+            // 检查左子节点，如果存在且大于父节点，则更新最大值节点索引
+            if (left < len && nums[left] > nums[max]) {
+                max = left;
+            }
+
+            // 检查右子节点，如果存在且大于当前最大值节点，则更新最大值节点索引
+            if (right < len && nums[right] > nums[max]) {
+                max = right;
+            }
+
+            // 如果当前节点已经是最大值，或者左右子节点均越界，则结束循环
+            if (max == i) {
+                break;
+            }
+
+            // 交换当前节点与其较大的子节点，继续下沉调整
+            swap(nums, i, max);
+            i = max;
+        }
     }
 
 
