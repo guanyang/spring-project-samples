@@ -8,9 +8,9 @@ public class Test002 {
         int[] nums = randomIntArray(10, 200);
         printArray(nums);
 //        bubbleSort(nums);
-//        quickSort(nums, 0, nums.length - 1);
+        quickSort(nums, 0, nums.length - 1);
 //        mergeSort(nums, 0, nums.length - 1);
-        heapSort(nums);
+//        heapSort(nums);
         printArray(nums);
 
 //        String version1 = "0.1";
@@ -176,6 +176,54 @@ public class Test002 {
         }
     }
 
+    /**
+     * 查找数组中第 k 大的元素
+     *
+     * @param nums 整型数组，要查找的数组
+     * @param k 查找的顺序，即第 k 大的元素
+     * @return 返回数组中第 k 大的元素值
+     */
+    public static int findKthLargest(int[] nums, int k) {
+        int n = nums.length; // 数组长度
+        // 使用快速选择算法查找第 k 大的元素，调整范围为数组的整个长度
+        return quickSelect(nums, 0, n - 1, n - k);
+    }
+
+    /**
+     * 使用快速选择算法在数组中找到第k小的元素。
+     *
+     * @param nums 待搜索的整数数组。
+     * @param left 搜索范围的左边界。
+     * @param right 搜索范围的右边界。
+     * @param k 要查找的第k小的元素，k从1开始。
+     * @return 返回数组中第k小的元素。
+     */
+    public static int quickSelect(int[] nums, int left, int right, int k) {
+        // 当左边界等于右边界时，返回该元素，表示已找到第k小的数
+        if (left == right) {
+            return nums[left];
+        }
+        int i = left - 1, j = right + 1, x = nums[left]; // 初始化分区点及其左右指针
+        while (i < j) { // 当i小于j时，继续调整分区
+            do {
+                i++;
+            } while (nums[i] < x); // 找到第一个大于等于x的元素
+            do {
+                j--;
+            } while (nums[j] > x); // 找到第一个小于等于x的元素
+            if (i < j) {
+                swap(nums, i, j); // 交换两个元素，使分区更有序
+            }
+        }
+        // 根据j与k的关系，递归地在左侧或右侧继续寻找
+        if (k <= j) {
+            return quickSelect(nums, left, j, k);
+        } else {
+            return quickSelect(nums, j + 1, right, k);
+        }
+
+    }
+
 
     /**
      * 快速排序算法 对给定的整型数组按照升序进行排序
@@ -234,7 +282,9 @@ public class Test002 {
                 i++;
             }
             // 交换找到的两个元素，将小于目标值的元素放到数组左侧
-            swap(arr, i, j);
+            if (i < j) {
+                swap(arr, i, j);
+            }
         }
         // 将等于目标值的元素放到数组的最后
         swap(arr, i, low);
