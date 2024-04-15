@@ -252,10 +252,10 @@ public class Test002 {
             int pivot = getMid(nums, left, right);
             // 对两个子数组中较短的那个执行快速排序
             if (pivot - left < right - pivot) {
-                quickSort(nums, left, pivot - 1); // 递归排序左子数组
+                quickSortNew(nums, left, pivot - 1); // 递归排序左子数组
                 left = pivot + 1; // 剩余未排序区间为 [pivot + 1, right]
             } else {
-                quickSort(nums, pivot + 1, right); // 递归排序右子数组
+                quickSortNew(nums, pivot + 1, right); // 递归排序右子数组
                 right = pivot - 1; // 剩余未排序区间为 [left, pivot - 1]
             }
         }
