@@ -1,5 +1,7 @@
 package org.gy.demo.webflux;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -198,10 +200,15 @@ public class PrintTest {
         }
 
         public static void main(String[] args) {
+            String[] names = {"A", "B", "C"};
             PrintABCUsingLock printABCUsingLock = new PrintABCUsingLock(5);
-            new Thread(() -> printABCUsingLock.print("A", 0)).start();
-            new Thread(() -> printABCUsingLock.print("B", 1)).start();
-            new Thread(() -> printABCUsingLock.print("C", 2)).start();
+            for (int i = 0; i < names.length; i++) {
+                int idx = i;
+                new Thread(() -> printABCUsingLock.print(names[idx], idx)).start();
+            }
+//            new Thread(() -> printABCUsingLock.print("A", 0)).start();
+//            new Thread(() -> printABCUsingLock.print("B", 1)).start();
+//            new Thread(() -> printABCUsingLock.print("C", 2)).start();
         }
     }
 

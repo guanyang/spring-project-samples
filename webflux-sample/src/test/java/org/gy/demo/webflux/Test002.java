@@ -8,8 +8,8 @@ public class Test002 {
         int[] nums = randomIntArray(10, 200);
         printArray(nums);
 //        bubbleSort(nums);
-        quickSort(nums, 0, nums.length - 1);
-//        mergeSort(nums, 0, nums.length - 1);
+//        quickSort(nums, 0, nums.length - 1);
+        mergeSort(nums, 0, nums.length - 1);
 //        heapSort(nums);
         printArray(nums);
 
@@ -18,6 +18,45 @@ public class Test002 {
 //        System.out.println(compareVersion(version1, version2));
 //        System.out.println("1".compareTo(""));Ï
 
+        int[][] matrix = new int[][]{{0, 1, 0, 0}, {0, 0, 0, 1}, {1, 0, 0, 0}, {0, 0, 1, 0}};
+
+        int n = matrix.length;
+        boolean[] rows = new boolean[n];
+        boolean[] cols = new boolean[n];
+        boolean[] lefts = new boolean[2 * n - 1];
+        boolean[] rights = new boolean[2 * n - 1];
+
+        boolean flag = dfs(0, n, matrix, rows, cols, lefts, rights);
+
+        if (flag) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+
+    }
+
+    private static boolean dfs(int row, int n, int[][] matrix, boolean[] rows, boolean[] cols, boolean[] lefts,
+        boolean[] rights) {
+        if (row >= n || row < 0) {
+            return false;
+        }
+        //遍历当前行
+        for (int i = 0; i < n; i++) {
+            if (matrix[row][i] == 0) {
+                continue;
+            }
+            //计算左右对角线
+            int left = row - i + n - 1;
+            int right = row + i;
+            //判断是否已经存在
+            if (rows[row] || cols[i] || lefts[left] || rights[right]) {
+                return true;
+            }
+            rows[row] = cols[i] = lefts[left] = rights[right] = true;
+        }
+        //递归遍历下一行
+        return dfs(row + 1, n, matrix, rows, cols, lefts, rights);
     }
 
     /**
@@ -114,6 +153,19 @@ public class Test002 {
         return versions;
     }
 
+    public static void insertSort(int[] nums) {
+        for (int i = 1; i < nums.length; i++) {
+            // 先暂存这个元素，然后之前元素逐个后移，留出空位
+            int temp = nums[i];
+            int j = i;
+            while (j > 0 && nums[j - 1] > temp) {
+                nums[j] = nums[j - 1];
+                j--;
+            }
+            nums[j] = temp;
+        }
+    }
+
 
     /**
      * 实现归并排序算法。 对给定的整型数组 nums 中指定范围 [low, high] 的元素进行排序。
@@ -133,6 +185,10 @@ public class Test002 {
             // 对数组的右半部分进行递归排序
             mergeSort(nums, mid + 1, high);
 
+            // 如果数组的这个子区间本身有序，无需合并
+            if (nums[mid] <= nums[mid + 1]) {
+                return;
+            }
             // 将排序好的左右两部分合并
             merge(nums, low, mid, high);
         }
@@ -244,7 +300,12 @@ public class Test002 {
         }
     }
 
-    /* 快速排序（尾递归优化） */
+    /* 快速排序（尾递归优化，缩减堆栈深度） */
+    //参考文档：https://cloud.tencent.com/developer/article/2062488
+    //优化1：序列长度达到一定大小时，使用插入排序，长度为5~20之间
+    //优化2：尾递归优化，可以缩减堆栈的深度，由原来的O(n)缩减为O(logn)
+    //优化3：聚集元素
+    //优化4：多线程处理快排
     public static void quickSortNew(int[] nums, int left, int right) {
         // 子数组长度为 1 时终止
         while (left < right) {
