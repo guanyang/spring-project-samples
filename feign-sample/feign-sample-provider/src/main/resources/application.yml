@@ -1,0 +1,10 @@
+server:
+  port: 8090
+
+spring:
+  jackson:
+    default-property-inclusion: non_null
+  application:
+    name: feign-sample-provider
+  profiles:
+    active: live

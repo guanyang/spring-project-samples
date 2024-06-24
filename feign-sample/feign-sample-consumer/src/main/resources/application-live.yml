@@ -1,0 +1,29 @@
+#log
+logging:
+  level:
+    root: INFO
+    org.gy.demo.feign: DEBUG
+
+#feign
+spring:
+  cloud:
+    openfeign:
+      httpclient:
+        enabled: false
+        max-connections: 500
+        max-connections-per-route: 100
+      okhttp:
+        enabled: true
+      compression:
+        request:
+          enabled: true
+        response:
+          enabled: true
+      client:
+        config:
+          sampleService:
+            url: http://localhost:8090
+            connectTimeout: 3000
+            readTimeout: 5000
+            loggerLevel: FULL
+

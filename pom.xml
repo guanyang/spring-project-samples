@@ -19,24 +19,62 @@
     <module>virtualthread-sample</module>
     <module>webflux-sample</module>
     <module>flink-sample</module>
+    <module>feign-sample</module>
   </modules>
   <properties>
     <revision>0.0.1-SNAPSHOT</revision>
     <java.version>17</java.version>
     <java.encoding>UTF-8</java.encoding>
     <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
+    <spring-boot.version>3.2.2</spring-boot.version>
+    <spring-cloud.version>2023.0.1</spring-cloud.version>
+    <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
     <jmh.version>1.37</jmh.version>
     <caffeine.version>3.1.6</caffeine.version>
     <guava.version>32.1.1-jre</guava.version>
     <gson.version>2.10.1</gson.version>
     <hutool.version>5.8.20</hutool.version>
+    <fastjson2.version>2.0.50</fastjson2.version>
   </properties>
   <dependencyManagement>
     <dependencies>
+      <!-- SpringBoot 依赖配置 -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- SpringCloud 微服务 -->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- SpringCloud Alibaba 微服务 -->
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>${spring-cloud-alibaba.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
       <dependency>
         <groupId>com.github.ben-manes.caffeine</groupId>
         <artifactId>caffeine</artifactId>
         <version>${caffeine.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba.fastjson2</groupId>
+        <artifactId>fastjson2</artifactId>
+        <version>${fastjson2.version}</version>
       </dependency>
 
       <dependency>
