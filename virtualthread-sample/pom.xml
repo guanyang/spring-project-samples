@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.gy.demo</groupId>
         <artifactId>spring-project-samples</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
     <artifactId>virtualthread-sample</artifactId>
     <properties>

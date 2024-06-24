@@ -17,6 +17,7 @@ target/
 *.iws
 *.iml
 *.ipr
+.DS_Store
 
 ### NetBeans ###
 /nbproject/private/
@@ -30,3 +31,21 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Maven ignore
+.flattened-pom.xml
+
+# temp ignore
+*.cache
+*.diff
+*.patch
+*.tmp
+rebel.xml
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
