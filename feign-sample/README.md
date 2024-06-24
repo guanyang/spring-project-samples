@@ -9,17 +9,17 @@
 #### 调用示例
 - 请求示例: 
 ```
-curl --location 'http://127.0.0.1:8081/api/test/hello?name=test&age=20'
+curl --location 'http://127.0.0.1:8091/test/hello?name=test&age=20'
 ```
 - 响应示例: 
 ```json
 {
-    "code": 0,
-    "message": "success",
-    "data": {
-        "name": "test",
-        "age": 20,
-        "time": 1695297874605
-    }
+  "code": 0,
+  "message": "success",
+  "data": {
+    "name": "test",
+    "age": 20,
+    "time": 1719231315166
+  }
 }
 ```
