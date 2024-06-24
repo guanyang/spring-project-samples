@@ -1,5 +1,8 @@
 package org.gy.demo.webflux;
 
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Test002 {
@@ -33,6 +36,17 @@ public class Test002 {
         } else {
             System.out.println("No");
         }
+        Set<Integer> set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Object[] array = set.toArray();
+
+        char c = '.';
+        System.out.println((int)'a');
+        System.out.println((int)'0');
+        System.out.println((int) c);
+        System.out.println(c-'0');
+        System.out.println(c-'a');
+
+        Queue<int[]> queue = new PriorityQueue<>(2, (o1, o2) -> o1[0] - o2[0]);
 
     }
 
