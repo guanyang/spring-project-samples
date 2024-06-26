@@ -26,3 +26,28 @@ logging:
 #            readTimeout: 5000
 #            loggerLevel: FULL
 
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: default
+      display-name: "业务接口文档"
+      paths-to-match: '/**'
+      packages-to-scan: org.gy.demo.feign.provider.controller
+  default-flat-param-object: true
+knife4j:
+  # 开启增强配置
+  enable: true
+  # 开启生产环境屏蔽（如果是生产环境，需要把下面配置设置true）
+  production: false
+  setting:
+    language: zh_cn
+  basic: # 开始授权认证
+    enable: false
+    username: admin
+    password: 123456
