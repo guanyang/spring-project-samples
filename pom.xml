@@ -164,6 +164,8 @@
         <version>${flatten-maven-plugin.version}</version>
         <configuration>
           <updatePomFile>true</updatePomFile>
+          <flattenedPomFilename>.flattened-pom.iml</flattenedPomFilename>
+<!--          <outputDirectory>${project.build.directory}</outputDirectory>-->
           <flattenMode>resolveCiFriendliesOnly</flattenMode>
         </configuration>
         <executions>
