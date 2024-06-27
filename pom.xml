@@ -35,6 +35,8 @@
     <gson.version>2.10.1</gson.version>
     <hutool.version>5.8.20</hutool.version>
     <fastjson2.version>2.0.50</fastjson2.version>
+    <knife4j.version>4.5.0</knife4j.version>
+    <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -92,6 +94,16 @@
         <groupId>cn.hutool</groupId>
         <artifactId>hutool-all</artifactId>
         <version>${hutool.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.xiaoymin</groupId>
+        <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+        <version>${knife4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>transmittable-thread-local</artifactId>
+        <version>${transmittable-thread-local.version}</version>
       </dependency>
 
       <dependency>
