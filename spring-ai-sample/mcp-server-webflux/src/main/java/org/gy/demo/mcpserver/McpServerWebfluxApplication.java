@@ -1,5 +1,6 @@
 package org.gy.demo.mcpserver;
 
+import org.gy.demo.mcpserver.service.IpService;
 import org.gy.demo.mcpserver.service.WeatherService;
 import org.springframework.ai.tool.ToolCallback;
 import org.springframework.ai.tool.ToolCallbackProvider;
@@ -22,6 +23,11 @@ public class McpServerWebfluxApplication {
     @Bean
     public ToolCallbackProvider weatherTools(WeatherService weatherService) {
         return MethodToolCallbackProvider.builder().toolObjects(weatherService).build();
+    }
+
+    @Bean
+    public ToolCallbackProvider ipTools(IpService ipService) {
+        return MethodToolCallbackProvider.builder().toolObjects(ipService).build();
     }
 
     public record TextInput(String input) {
