@@ -12,15 +12,18 @@ dubbo:
     qos-enable: true
     qos-port: 22222
   registry:
-    address: ${DUBBO_REGISTRY_ADDRESS:zookeeper://127.0.0.1:2181}
+#    address: ${DUBBO_REGISTRY_ADDRESS:zookeeper://127.0.0.1:2181}
+    address: ${DUBBO_REGISTRY_ADDRESS:nacos://dev.nacos:8848?namespace=live&username=nacos&password=nacos}
     timeout: 60000   #超时时间设置，太短可能会报错单位是ms，也就是60秒
   metadata-report:
-    address: ${DUBBO_METADATA_ADDRESS:zookeeper://127.0.0.1:2181}
+#    address: ${DUBBO_METADATA_ADDRESS:zookeeper://127.0.0.1:2181}
+    address: ${DUBBO_REGISTRY_ADDRESS:nacos://dev.nacos:8848?namespace=live&username=nacos&password=nacos}
     timeout: 60000   #超时时间设置，太短可能会报错单位是ms
   config-center:
-    address: ${DUBBO_CONFIG_ADDRESS:zookeeper://127.0.0.1:2181}
+#    address: ${DUBBO_CONFIG_ADDRESS:zookeeper://127.0.0.1:2181}
+    address: ${DUBBO_REGISTRY_ADDRESS:nacos://dev.nacos:8848?namespace=live&username=nacos&password=nacos}
   protocol: #指定使用dubbo协议，端口是20880可以是其他端口不影响使用
-    name: dubbo
+    name: tri
     port: -1
   provider:
     group: live

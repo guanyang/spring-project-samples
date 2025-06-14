@@ -18,7 +18,8 @@
     </modules>
 
     <properties>
-        <dubbo.version>3.2.6</dubbo.version>
+        <dubbo.version>3.3.1</dubbo.version>
+        <spring-boot.version>3.2.3</spring-boot.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,6 +31,13 @@
                 <artifactId>dubbo-sample-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- Dubbo -->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
@@ -39,12 +47,12 @@
                 <scope>import</scope>
             </dependency>
 
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-dependencies-zookeeper-curator5</artifactId>
-                <version>${dubbo.version}</version>
-                <type>pom</type>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.apache.dubbo</groupId>-->
+<!--                <artifactId>dubbo-dependencies-zookeeper-curator5</artifactId>-->
+<!--                <version>${dubbo.version}</version>-->
+<!--                <type>pom</type>-->
+<!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
