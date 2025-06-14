@@ -1,0 +1,28 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: mcp-client-webflux
+  main:
+    web-application-type: none
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY}
+    mcp:
+      client:
+        name: ${spring.application.name}
+        version: 1.0.0
+        request-timeout: 30s
+        type: ASYNC
+        sse:
+          connections:
+            server1:
+              url: http://localhost:8080
+#        stdio:
+#          servers-configuration: classpath:/mcp-servers-config.json
+
+ai:
+  user:
+    input: Does Srping AI support MCP?

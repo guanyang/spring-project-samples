@@ -6,6 +6,7 @@
 - [quarkus-sample](quarkus-sample/README.md): 基于quarkus构建原生镜像示例
 - [virtualthread-sample](virtualthread-sample/README.md): 基于JDK21+springboot3搭建虚拟线程示例
 - [webflux-sample](webflux-sample/README.md): 基于JDK21+spring webflux搭建响应式示例
+- [spring-ai-sample](spring-ai-sample/README.md):  基于Spring AI 构建智能应用程序示例
 
 ### Documents
 - [Spring-Native-vs-Quarkus](docs/Spring-Native-vs-Quarkus.md)
