@@ -1,6 +1,10 @@
 spring:
   main:
     banner-mode: off
+#  r2dbc:
+#    url: r2dbc:mysql://localhost:3306/demo?useSSL=false&useUnicode=true&characterEncoding=UTF8&autoReconnect=true
+#    username: root
+#    password: 12345678
   ai:
     mcp:
       server:

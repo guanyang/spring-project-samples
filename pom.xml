@@ -31,6 +31,7 @@
     <spring-cloud.version>2025.0.0</spring-cloud.version>
     <spring-cloud-alibaba.version>2023.0.3.3</spring-cloud-alibaba.version>
     <spring-ai.version>1.1.0-SNAPSHOT</spring-ai.version>
+    <spring-data.version>2025.0.0</spring-data.version>
     <jmh.version>1.37</jmh.version>
     <caffeine.version>3.1.6</caffeine.version>
     <guava.version>32.1.1-jre</guava.version>
@@ -47,6 +48,13 @@
         <groupId>org.springframework.ai</groupId>
         <artifactId>spring-ai-bom</artifactId>
         <version>${spring-ai.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-bom</artifactId>
+        <version>${spring-data.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
