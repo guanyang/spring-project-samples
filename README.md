@@ -7,6 +7,8 @@
 - [virtualthread-sample](virtualthread-sample/README.md): 基于JDK21+springboot3搭建虚拟线程示例
 - [webflux-sample](webflux-sample/README.md): 基于JDK21+spring webflux搭建响应式示例
 - [spring-ai-sample](spring-ai-sample/README.md):  基于Spring AI 构建智能应用程序示例
+- [feign-sample](feign-sample/README.md): 基于openFeign搭建示例
+- [mq-sample](mq-sample): 基于消息队列搭建示例，支持RocketMQ、Kafka
 
 ### Documents
 - [Spring-Native-vs-Quarkus](docs/Spring-Native-vs-Quarkus.md)
