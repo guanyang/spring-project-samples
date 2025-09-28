@@ -15,10 +15,11 @@
         <module>flink-sample</module>
         <module>feign-sample</module>
         <module>spring-ai-sample</module>
+        <module>mq-sample</module>
     </modules>
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
-        <java.version>25</java.version>
+        <java.version>21</java.version>
         <java.encoding>UTF-8</java.encoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -70,6 +71,13 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.github.guanyang</groupId>
+                <artifactId>spring-base-parent</artifactId>
+                <version>2.0.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- SpringAI 模型 -->
             <dependency>
                 <groupId>org.springframework.ai</groupId>
@@ -355,10 +363,10 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-        <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/guanyang/spring-base-parent</url>
-        </repository>
+<!--        <repository>-->
+<!--            <id>github</id>-->
+<!--            <url>https://maven.pkg.github.com/guanyang/spring-base-parent</url>-->
+<!--        </repository>-->
     </repositories>
     <profiles>
         <profile>
