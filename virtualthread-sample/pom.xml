@@ -9,7 +9,6 @@
     </parent>
     <artifactId>virtualthread-sample</artifactId>
     <properties>
-        <java.version>21</java.version>
         <start-class>org.gy.demo.virtualthread.VirtualthreadSampleApplication</start-class>
     </properties>
     <dependencies>
