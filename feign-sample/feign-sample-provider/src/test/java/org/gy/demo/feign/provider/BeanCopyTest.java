@@ -10,10 +10,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
+import org.openjdk.jmh.runner.Runner;
+import org.openjdk.jmh.runner.RunnerException;
+import org.openjdk.jmh.runner.options.Options;
+import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cglib.beans.BeanCopier;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.List;
@@ -56,8 +59,9 @@ public class BeanCopyTest {
         sources = null;
     }
 
-    public static void main(String[] args) throws IOException {
-        org.openjdk.jmh.Main.main(args);
+    public static void main(String[] args) throws RunnerException {
+        Options opt = new OptionsBuilder().include(BeanCopyTest.class.getSimpleName()).build();
+        new Runner(opt).run();
     }
 
     @Benchmark
