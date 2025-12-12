@@ -1,9 +1,10 @@
 package org.gy.demo.feign.api.dto.support;
 
-import java.io.Serial;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+
+import java.io.Serial;
 
 /**
  * 功能描述：
@@ -36,6 +37,10 @@ public class Result<T> extends BaseResult {
 
     public static <T> Result<T> error(ErrorCodeI status, String msg) {
         return of(status, msg, null);
+    }
+
+    public static <T> Result<T> error(int code, String msg) {
+        return of(code, msg, null);
     }
 
 

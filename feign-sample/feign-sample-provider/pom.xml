@@ -15,6 +15,10 @@
       <optional>true</optional>
     </dependency>
     <dependency>
+      <groupId>io.github.guanyang</groupId>
+      <artifactId>spring-base-xss</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.gy.demo</groupId>
       <artifactId>feign-sample-api</artifactId>
     </dependency>
