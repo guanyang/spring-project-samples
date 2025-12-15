@@ -7,7 +7,7 @@ spring:
 
 dubbo:
   application:
-    name: dubbo-sample-consumer
+    name: ${spring.application.name}
     logger: slf4j
     qos-enable: true
     qos-port: 33333
@@ -24,7 +24,7 @@ dubbo:
     address: ${DUBBO_REGISTRY_ADDRESS:nacos://dev.nacos:8848?namespace=live&username=nacos&password=nacos}
   protocol:
     name: tri
-    port: -1
+    port: 50051
   consumer:
     group: live
     version: 1.0.0

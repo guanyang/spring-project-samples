@@ -7,7 +7,7 @@ spring:
 
 dubbo:
   application: #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
-    name: dubbo-sample-provider #应用名称
+    name: ${spring.application.name}
     logger: slf4j
     qos-enable: true
     qos-port: 22222
@@ -24,7 +24,9 @@ dubbo:
     address: ${DUBBO_REGISTRY_ADDRESS:nacos://dev.nacos:8848?namespace=live&username=nacos&password=nacos}
   protocol: #指定使用dubbo协议，端口是20880可以是其他端口不影响使用
     name: tri
-    port: -1
+    port: 50052
+#    triple:
+#      verbose: true
   provider:
     group: live
     version: 1.0.0
